@@ -1,8 +1,8 @@
 import { cardsPlayedPreviousTurn, findCard, updateStat } from '@/gameState'
-import { Card } from '@/types'
-import { F, N, O, pipe } from '@mobily/ts-belt'
+import { N, O, pipe } from '@mobily/ts-belt'
+import { createCard } from './createCard'
 
-export const WORK: Card = {
+export const WORK = createCard({
   id: 'work',
   title: 'Work',
   description: '',
@@ -12,19 +12,18 @@ export const WORK: Card = {
   },
   energyCost: 2,
   instant: updateStat('money', N.add(1)),
-  nextTurnStart: F.identity,
-}
+})
 
-export const SLEEP: Card = {
+export const SLEEP = createCard({
   id: 'sleep',
   title: 'Good night’s rest',
   description: 'Discard a card. Next day gain 1 energy.',
   energyCost: 0,
-  instant: F.identity, // todo: discard a card (if any)
+  // instant: todo: discard a card (if any)
   nextTurnStart: updateStat('energy', N.add(1)),
-}
+})
 
-export const CAFFEINE: Card = {
+export const CAFFEINE = createCard({
   id: 'caffeine',
   title: 'Caffeine',
   description:
@@ -43,4 +42,4 @@ export const CAFFEINE: Card = {
       O.flatMap(findCard(CAFFEINE)),
       O.mapWithDefault(state, () => updateStat('energy', N.subtract(1))(state)),
     ),
-}
+})

@@ -30,6 +30,11 @@ export interface Card {
   nextTurnStart(gameState: Readonly<GameState>): GameState
 }
 
+export type CardMethods = 'instant' | 'nextTurnStart'
+
+export type CardWithOptionalMethods = Omit<Card, CardMethods> &
+  Partial<Pick<Card, CardMethods>>
+
 export interface FlavourText {
   text: string
   source: string
