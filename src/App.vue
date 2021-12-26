@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { WORK } from './cards'
+import { WORK } from './cards/action-cards'
 import Card from './components/Card.vue'
 import { useGameStore } from './store'
 

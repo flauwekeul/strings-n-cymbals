@@ -6,7 +6,7 @@ export const initialState: GameState = {
   fame: 0,
   inspiration: 2,
   money: 0,
-  cardsPlayed: [],
+  previousTurns: [],
 }
 
 export const useGameStore = defineStore('gameState', {

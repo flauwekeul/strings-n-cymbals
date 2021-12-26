@@ -1,20 +1,37 @@
-export interface GameState {
+export interface Stats {
   energy: number
   fame: number
   inspiration: number
   money: number
-  cardsPlayed: PlayedCard[]
+}
+
+export interface GameState extends Stats {
+  /**
+   * previously played turns (excluding the current) in chronological order
+   */
+  previousTurns: ReadonlyArray<Readonly<Turn>>
+}
+
+export interface Turn {
+  index: number
+  cardsPlayed: Card[]
 }
 
 export interface Card {
   id: string
   title: string
   description: string
-  cost: number
+  flavourText?: FlavourText
+  energyCost: number
   instant(gameState: Readonly<GameState>): GameState
-  nextTurn(gameState: Readonly<GameState>): GameState
+  /**
+   * This function is called the turn after the card is played
+   */
+  nextTurnStart(gameState: Readonly<GameState>): GameState
 }
 
-export interface PlayedCard extends Card {
-  turn: number
+export interface FlavourText {
+  text: string
+  source: string
+  link?: string
 }
