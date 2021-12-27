@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { Card } from '@/cards'
 import { useGameStore } from '@/store'
-import { Card } from '@/types'
 
 interface Props {
   card: Card

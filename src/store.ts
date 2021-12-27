@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { Card, GameState } from './types'
+import { Card } from './cards'
+import { GameState } from './state'
 
 export const initialState: GameState = {
   energy: 3,

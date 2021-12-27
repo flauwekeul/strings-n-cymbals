@@ -1,7 +1,7 @@
-import { Card, CardWithOptionalMethods } from '@/types'
+import { Card, CardWithOptionalMethods } from '@/cards'
 import { F } from '@mobily/ts-belt'
 
-export const createCard = (card: CardWithOptionalMethods): Card => ({
+export const createPlayCard = (card: CardWithOptionalMethods): Card => ({
   instant: F.identity,
   nextTurnStart: F.identity,
   ...card,

@@ -1,20 +1,33 @@
-import { cardsPlayedPreviousTurn, findCard, updateStat } from '@/gameState'
+import { findCard } from '@/cards'
+import { cardsPlayedPreviousTurn, updateStat } from '@/state'
 import { N, O, pipe } from '@mobily/ts-belt'
-import { createCard } from './createCard'
+import { createPlayCard } from './createCard'
 
-export const WORK = createCard({
+// basic cards
+
+export const INSPIRATION = createPlayCard({
+  id: 'inspiration',
+  title: 'Inspiration',
+  description: 'Gain 1 inspiration',
+  energyCost: 1,
+  instant: updateStat('inspiration', N.add(1)),
+})
+
+export const WORK = createPlayCard({
   id: 'work',
   title: 'Work',
-  description: '',
+  description: 'Gain 1 money.',
   flavourText: {
     text: 'It’s been a hard day’s night. And I’ve been working like a dog',
     source: 'The Beatles',
   },
   energyCost: 2,
-  instant: updateStat('money', N.add(1)),
+  instant: updateStat('money', N.add(3)),
 })
 
-export const SLEEP = createCard({
+// other cards
+
+export const SLEEP = createPlayCard({
   id: 'sleep',
   title: 'Good night’s rest',
   description: 'Discard a card. Next day gain 1 energy.',
@@ -23,7 +36,7 @@ export const SLEEP = createCard({
   nextTurnStart: updateStat('energy', N.add(1)),
 })
 
-export const CAFFEINE = createCard({
+export const CAFFEINE = createPlayCard({
   id: 'caffeine',
   title: 'Caffeine',
   description:
@@ -42,4 +55,20 @@ export const CAFFEINE = createCard({
       O.flatMap(findCard(CAFFEINE)),
       O.mapWithDefault(state, () => updateStat('energy', N.subtract(1))(state)),
     ),
+})
+
+export const POSSIBILITY = createPlayCard({
+  id: 'possibility',
+  title: 'Possibility',
+  description: 'Gain 1 inspiration. Draw 2 cards.',
+  energyCost: 1,
+  instant: updateStat('inspiration', N.add(1)), // todo: draw 2 cards
+})
+
+export const READY = createPlayCard({
+  id: 'ready',
+  title: 'Ready',
+  description: 'Draw 1 card. Discard 1 card.',
+  energyCost: 0,
+  // todo: draw 1 card, discard 1 card
 })
