@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Card } from './cards'
+import { AnyCard } from './cards'
 import { GameState } from './state'
 
 export const initialState: GameState = {
@@ -13,7 +13,7 @@ export const initialState: GameState = {
 export const useGameStore = defineStore('gameState', {
   state: () => initialState,
   actions: {
-    playCard(card: Card) {
+    playCard(card: AnyCard) {
       this.$state = card.instant(this.$state)
     },
   },
