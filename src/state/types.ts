@@ -12,11 +12,11 @@ export interface GameState extends Stats {
   /**
    * previously played turns (excluding the current) in chronological order
    */
-  previousTurns: ReadonlyArray<Readonly<Turn>>
+  readonly previousTurns: Readonly<Turn>[]
   bandMembers: [BandMember, BandMember, BandMember]
 }
 
 export interface Turn {
-  index: number
-  cardsPlayed: AnyCard[]
+  readonly index: number
+  readonly cardsPlayed: AnyCard[]
 }

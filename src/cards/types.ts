@@ -1,17 +1,17 @@
 import { GameState } from '@/state'
 
 export interface BaseCard {
-  id: string
-  title: string
-  description: string
-  flavourText?: FlavourText
-  cause?: AnyCard // | Trait
+  readonly id: string
+  readonly title: string
+  readonly description: string
+  readonly flavourText?: FlavourText
+  readonly cause?: AnyCard // | Trait
 }
 
 export interface FlavourText {
-  text: string
-  source: string
-  link?: string
+  readonly text: string
+  readonly source: string
+  readonly link?: string
 }
 
 export interface GameStateUpdater {
@@ -45,16 +45,16 @@ export type MinimalStatusCard = Optional<StatusCard, 'thisTurnStart'>
 // event card
 
 export interface EventCard extends BaseCard {
-  choices: EventCardChoice[]
+  readonly choices: EventCardChoice[]
 }
 
 export interface EventCardChoice {
-  description: string
+  readonly description: string
   instant: GameStateUpdater
 }
 
 export type MinimalEventCard = Omit<EventCard, 'choices'> & {
-  choices: Optional<EventCardChoice, 'instant'>[]
+  readonly choices: Optional<EventCardChoice, 'instant'>[]
 }
 
 // idea cards
@@ -69,7 +69,7 @@ export enum Suit {
 export type Rank = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export interface IdeaCard {
-  id: string
+  readonly id: string
   suit: Suit
   rank: Rank
 }
