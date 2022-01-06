@@ -57,6 +57,25 @@ export type MinimalEventCard = Omit<EventCard, 'choices'> & {
   choices: Optional<EventCardChoice, 'instant'>[]
 }
 
+// idea cards
+
+export enum Suit {
+  Melody = 'Melody',
+  Lyrics = 'Lyrics',
+  Chords = 'Chords',
+  Rhythm = 'Rhythm',
+}
+
+export type Rank = 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+export interface IdeaCard {
+  id: string
+  suit: Suit
+  rank: Rank
+}
+
+export type MinimalIdeaCard = Optional<IdeaCard, 'id'>
+
 export type AnyCard = ActionCard | StatusCard | EventCard
 
 // utils
