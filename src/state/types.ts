@@ -1,19 +1,16 @@
 import { BandMember } from '@/bandMembers'
 import { AnyCard } from '@/cards'
 
-export interface Stats {
-  energy: number
+export interface GameState {
   fame: number
-  inspiration: number
   money: number
-}
-
-export interface GameState extends Stats {
   /**
    * previously played turns (excluding the current) in chronological order
    */
   readonly previousTurns: Readonly<Turn>[]
-  bandMembers: [BandMember, BandMember, BandMember]
+  bandMembers: Record<string, BandMember>
+  deck: AnyCard[]
+  hand: AnyCard[]
 }
 
 export interface Turn {

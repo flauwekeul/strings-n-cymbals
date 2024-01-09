@@ -1,7 +1,4 @@
-import { updateStat } from '@/state'
-import { flow, N } from '@mobily/ts-belt'
 import { createEventCard } from '.'
-import { subtractOrZero } from './utils'
 
 export const THE_PUB = createEventCard({
   id: 'the-pub',
@@ -11,17 +8,17 @@ export const THE_PUB = createEventCard({
   choices: [
     {
       description: 'Fun: gain 2 inspiration.',
-      instant: flow(
-        updateStat('money', subtractOrZero(1)),
-        updateStat('inspiration', N.add(2)),
-      ),
+      // instant: flow(
+      //   updateStat('money', addOrZero(1)),
+      //   updateStat('inspiration', N.add(2)),
+      // ),
     },
     {
       description: 'Relax: gain 2 energy.',
-      instant: flow(
-        updateStat('money', subtractOrZero(1)),
-        updateStat('energy', N.add(2)),
-      ),
+      // instant: flow(
+      //   updateStat('money', addOrZero(1)),
+      //   updateStat('energy', N.add(2)),
+      // ),
     },
   ],
 })

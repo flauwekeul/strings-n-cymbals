@@ -1,6 +1,3 @@
-import { findCard, subtractOrZero } from '@/cards'
-import { cardsPlayedPreviousTurn, updateStat } from '@/state'
-import { flow, N, O, pipe } from '@mobily/ts-belt'
 import { createActionCard } from './createCard'
 
 // basic cards
@@ -10,7 +7,7 @@ export const SADNESS = createActionCard({
   title: 'Sadness',
   description: 'Gain 2 inspiration. Discard 1 card.',
   energyCost: 1,
-  instant: updateStat('inspiration', N.add(2)),
+  // instant: updateStat('inspiration', N.add(2)),
 })
 
 export const MELANCHOLY = createActionCard({
@@ -18,7 +15,7 @@ export const MELANCHOLY = createActionCard({
   title: 'Melancholy',
   description: 'Gain 1 inspiration.',
   energyCost: 0,
-  instant: updateStat('inspiration', N.add(1)),
+  // instant: updateStat('inspiration', N.add(1)),
 })
 
 export const ANGER = createActionCard({
@@ -26,7 +23,7 @@ export const ANGER = createActionCard({
   title: 'Anger',
   description: 'Gain 3 inspiration.',
   energyCost: 2,
-  instant: updateStat('inspiration', N.add(3)),
+  // instant: updateStat('inspiration', N.add(3)),
 })
 
 export const SHITTY_JOB = createActionCard({
@@ -34,7 +31,7 @@ export const SHITTY_JOB = createActionCard({
   title: 'Shitty job',
   description: 'Gain 3 money.',
   energyCost: 2,
-  instant: updateStat('money', N.add(3)),
+  // instant: updateStat('money', N.add(3)),
 })
 
 export const CUSHY_JOB = createActionCard({
@@ -42,7 +39,7 @@ export const CUSHY_JOB = createActionCard({
   title: 'Cushy job',
   description: 'Gain 5 money.',
   energyCost: 2,
-  instant: updateStat('money', N.add(5)),
+  // instant: updateStat('money', N.add(5)),
   // cause: Educated
 })
 
@@ -57,16 +54,16 @@ export const CAFFEINE = createActionCard({
     link: 'https://youtu.be/fhdCslFcKFU',
   },
   energyCost: 0,
-  instant: updateStat('energy', N.add(1)),
-  nextTurnStart: (state) =>
-    pipe(
-      state,
-      cardsPlayedPreviousTurn,
-      O.flatMap(findCard(CAFFEINE)),
-      O.mapWithDefault(state, () =>
-        updateStat('energy', subtractOrZero(1))(state),
-      ),
-    ),
+  // instant: updateStat('energy', N.add(1)),
+  // nextTurnStart: (state) =>
+  //   pipe(
+  //     state,
+  //     cardsPlayedPreviousTurn,
+  //     O.flatMap(findCard(CAFFEINE)),
+  //     O.mapWithDefault(state, () =>
+  //       updateStat('energy', addOrZero(1))(state),
+  //     ),
+  //   ),
 })
 
 export const ENERGY_DRINK = createActionCard({
@@ -74,10 +71,10 @@ export const ENERGY_DRINK = createActionCard({
   title: 'Energy drink',
   description: 'Gain 2 energy. Lose 1 inspiration.',
   energyCost: 0,
-  instant: flow(
-    updateStat('energy', N.add(2)),
-    updateStat('inspiration', subtractOrZero(1)),
-  ),
+  // instant: flow(
+  //   updateStat('energy', N.add(2)),
+  //   updateStat('inspiration', addOrZero(1)),
+  // ),
 })
 
 // from traits
@@ -108,7 +105,7 @@ export const SLEEP = createActionCard({
   description: 'Discard a card. Next day gain 1 energy.',
   energyCost: 0,
   // instant: todo: discard a card (if any)
-  nextTurnStart: updateStat('energy', N.add(1)),
+  // nextTurnStart: updateStat('energy', N.add(1)),
 })
 
 export const POSSIBILITY = createActionCard({
@@ -116,5 +113,5 @@ export const POSSIBILITY = createActionCard({
   title: 'Possibility',
   description: 'Gain 1 inspiration. Draw 2 cards.',
   energyCost: 1,
-  instant: updateStat('inspiration', N.add(1)), // todo: draw 2 cards
+  // instant: updateStat('inspiration', N.add(1)), // todo: draw 2 cards
 })

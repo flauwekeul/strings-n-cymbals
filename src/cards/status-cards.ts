@@ -1,7 +1,4 @@
-import { updateStat } from '@/state'
-import { flow, N } from '@mobily/ts-belt'
 import { createStatusCard } from './createCard'
-import { subtractOrZero } from './utils'
 
 // fixme: what to do when multiple status cards conflict?
 
@@ -15,7 +12,7 @@ export const APATHY = createStatusCard({
   id: 'apathy',
   title: 'Apathy',
   description: 'Unplayable. When this card is drawn, lose 1 inspiration.',
-  thisTurnStart: updateStat('inspiration', N.subtract(1)),
+  // thisTurnStart: updateStat('inspiration', N.subtract(1)),
 })
 
 // from traits
@@ -26,7 +23,7 @@ export const OOPS = createStatusCard({
   description:
     'Unplayable. The next card played this turn costs 1 more energy.',
   // cause: todo: CLUMSY Trait
-  thisTurnStart: updateStat('energy', N.subtract(1)),
+  // thisTurnStart: updateStat('energy', N.subtract(1)),
 })
 
 export const DEPRESSED = createStatusCard({
@@ -34,7 +31,7 @@ export const DEPRESSED = createStatusCard({
   title: 'Depressed',
   description: 'Unplayable. When this card is drawn, lose all energy.',
   // cause: GLOOMY trait
-  thisTurnStart: updateStat('energy', () => 0),
+  // thisTurnStart: updateStat('energy', () => 0),
 })
 
 export const DRUNK = createStatusCard({
@@ -61,7 +58,7 @@ export const JACKED = createStatusCard({
   description:
     'Unplayable. Gain 3 energy. Put “Withdrawal” on top of the deck.',
   // cause: Junkie trait,
-  thisTurnStart: updateStat('energy', N.add(3)),
+  // thisTurnStart: updateStat('energy', N.add(3)),
   // todo:
 })
 
@@ -70,7 +67,7 @@ export const WITHDRAWAL = createStatusCard({
   title: 'Withdrawal',
   description: 'Unplayable. When this card is drawn, lose all inspiration.',
   // cause: Junkie trait,
-  thisTurnStart: updateStat('inspiration', () => 0),
+  // thisTurnStart: updateStat('inspiration', () => 0),
 })
 
 export const STONED = createStatusCard({
@@ -78,10 +75,10 @@ export const STONED = createStatusCard({
   title: 'Stoned',
   description: 'Unplayable. Gain 3 inspiration and lose 3 energy.',
   // cause: Junkie trait,
-  thisTurnStart: flow(
-    updateStat('inspiration', N.add(3)),
-    updateStat('energy', subtractOrZero(3)),
-  ),
+  // thisTurnStart: flow(
+  //   updateStat('inspiration', N.add(3)),
+  //   updateStat('energy', addOrZero(3)),
+  // ),
 })
 
 export const CHAOS = createStatusCard({
@@ -99,7 +96,7 @@ export const PACK_O_SMOKES = createStatusCard({
   title: 'Pack o’ smokes',
   description: 'Unplayable. When this card is drawn, lose 1 money.',
   // cause: Smoker trait
-  thisTurnStart: updateStat('money', subtractOrZero(1)),
+  // thisTurnStart: updateStat('money', addOrZero(1)),
   // todo: add option to stop smoking with a D20 roll?
 })
 
